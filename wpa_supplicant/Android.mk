@@ -19,6 +19,9 @@ LOCAL_PATH := $(call my-dir)
 PKG_CONFIG ?= pkg-config
 
 WPA_BUILD_SUPPLICANT := false
+ifeq ($(WPA_SUPPLICANT_VERSION),VER_0_8_X)
+WPA_BUILD_SUPPLICANT := true
+endif # VER_0_5_X
 ifneq ($(BOARD_WPA_SUPPLICANT_DRIVER),)
   WPA_BUILD_SUPPLICANT := true
   CONFIG_DRIVER_$(BOARD_WPA_SUPPLICANT_DRIVER) := y
@@ -27,6 +30,9 @@ endif
 ifeq ($(WPA_BUILD_SUPPLICANT),true)
 
 include $(LOCAL_PATH)/.config
+
+# Driver interface for generic Linux wireless extensions
+CONFIG_DRIVER_WEXT=y
 
 # To ignore possible wrong network configurations
 L_CFLAGS = -DWPA_IGNORE_CONFIG_ERRORS

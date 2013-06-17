@@ -95,4 +95,14 @@ int wpa_driver_wext_keymgmt2wext(int keymgmt);
 #define WEXT_CSCAN_AMOUNT		9
 #endif
 
+#ifdef ANDROID
+#define WEXT_NUMBER_SCAN_CHANNELS_FCC	11
+#define WEXT_NUMBER_SCAN_CHANNELS_ETSI	13
+#define WEXT_NUMBER_SCAN_CHANNELS_MKK1	14
+
+#define WPA_DRIVER_WEXT_WAIT_US		400000
+#define MAX_DRV_CMD_SIZE		248
+#define WEXT_NUMBER_SEQUENTIAL_ERRORS	4
+#endif
+
 #endif /* DRIVER_WEXT_H */
